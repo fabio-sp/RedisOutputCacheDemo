@@ -8,6 +8,24 @@ var builder = WebApplication.CreateBuilder(args);
 // Add a reference to the IConnectionMultiplexer to connect to the Redis instance
 builder.Services.AddSingleton<IConnectionMultiplexer>(_ => ConnectionMultiplexer.Connect("localhost"));
 
+// In order to use FusionCache implementation you should comment the row abow and
+// add all the rows below + row 37.
+
+//builder.Services.AddStackExchangeRedisCache(options =>
+//{
+//    options.Configuration = "localhost";
+//});
+
+//builder.Services.AddFusionCacheNewtonsoftJsonSerializer();
+
+//builder.Services.AddFusionCacheStackExchangeRedisBackplane(options =>
+//{
+//    options.Configuration = "localhost";
+//});
+
+//builder.Services.AddFusionCache();
+
+
 // Add the Output cache to DI container
 builder.Services.AddOutputCache();
 
@@ -15,6 +33,9 @@ builder.Services.AddOutputCache();
 // one using Redis
 builder.Services.RemoveAll<IOutputCacheStore>();
 builder.Services.AddSingleton<IOutputCacheStore, RedisOutputCacheStore>();
+
+// Substitute with FusionCache implementation
+// builder.Services.AddSingleton<IOutputCacheStore, FusionOutputCacheStore>();
 
 var app = builder.Build();
 
