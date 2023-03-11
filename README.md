@@ -1,6 +1,6 @@
 # OutputCache Demo Application
 
-This is a demo repository to show how to integrate .NET 7 OutputCaching middleware with Redis Cache. Please do not use this code in production as it lacks of proper resource locking mechanisms.
+This is a demo repository to show how to integrate .NET 7 OutputCaching middleware with Redis Cache. **Please do not take it too seriously as it lacks proper resource locking mechanisms.**
 
 ## Prerequisites
 
